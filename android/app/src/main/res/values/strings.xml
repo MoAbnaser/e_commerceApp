@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MoAbnaser_shop</string>
+    <string name="facebook_app_id">3117572535128197</string>
+    <string name="fb_login_protocol_scheme">fb3117572535128197</string>
+</resources>

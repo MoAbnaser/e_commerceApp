@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "411437903714",
+    "project_id": "e-commerceapp-85ac1",
+    "storage_bucket": "e-commerceapp-85ac1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411437903714:android:af60b9f2ad64c503bd463b",
+        "android_client_info": {
+          "package_name": "moabnaser.e_commerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411437903714-e40lvld40ica5mb89md21o44gvc8108u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4BY-KWUrMJD5taApmiNcb4VQ0ldPdwlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411437903714-e40lvld40ica5mb89md21o44gvc8108u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
