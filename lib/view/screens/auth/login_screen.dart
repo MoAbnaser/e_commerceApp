@@ -23,9 +23,9 @@ class LogInScreen extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -46,7 +46,7 @@ class LogInScreen extends StatelessWidget {
                               'Log',
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                                  color: Get.isDarkMode ? mainColor : pinkClr,
+                                  color: Get.isDarkMode ? pinkClr : mainColor,
                                   fontSize: 35,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -58,8 +58,8 @@ class LogInScreen extends StatelessWidget {
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -73,7 +73,7 @@ class LogInScreen extends StatelessWidget {
                           inputType: TextInputType.emailAddress,
                           prefixIcon: Icon(
                             Icons.email,
-                            color: Get.isDarkMode ? mainColor : pinkClr,
+                            color: Get.isDarkMode ? pinkClr : mainColor,
                             size: 30,
                           ),
                           obscureText: false,
@@ -94,7 +94,7 @@ class LogInScreen extends StatelessWidget {
                               inputType: TextInputType.visiblePassword,
                               prefixIcon: Icon(
                                 Icons.lock,
-                                color: Get.isDarkMode ? mainColor : pinkClr,
+                                color: Get.isDarkMode ? pinkClr : mainColor,
                                 size: 30,
                               ),
                               suffixIcon: IconButton(
@@ -105,14 +105,14 @@ class LogInScreen extends StatelessWidget {
                                     ? Icon(
                                         Icons.visibility_off,
                                         color: Get.isDarkMode
-                                            ? mainColor
-                                            : pinkClr,
+                                            ? pinkClr
+                                            : mainColor,
                                       )
                                     : Icon(
                                         Icons.visibility,
                                         color: Get.isDarkMode
-                                            ? mainColor
-                                            : pinkClr,
+                                            ? pinkClr
+                                            : mainColor,
                                       ),
                                 color: mainColor,
                               ),
@@ -140,8 +140,8 @@ class LogInScreen extends StatelessWidget {
                               'Forgot password?',
                               style: TextStyle(
                                 color: Get.isDarkMode
-                                    ? Colors.black
-                                    : Colors.white,
+                                    ? Colors.white
+                                    : Colors.black,
                                 fontSize: 15,
                               ),
                             ),
@@ -167,7 +167,7 @@ class LogInScreen extends StatelessWidget {
                         Text(
                           'Or',
                           style: TextStyle(
-                            color: Get.isDarkMode ? Colors.black : Colors.white,
+                            color: Get.isDarkMode ? Colors.white : Colors.black,
                             fontSize: 15,
                           ),
                         ),

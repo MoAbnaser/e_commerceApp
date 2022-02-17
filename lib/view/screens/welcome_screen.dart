@@ -13,7 +13,7 @@ class WelcomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            SizedBox(
+            Container(
               width: double.infinity,
               height: double.infinity,
               child: Image.asset(
@@ -105,7 +105,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Get.toNamed(AppRoutes.logInScreen);
+                      Get.offNamed(AppRoutes.logInScreen);
                     },
                     child: const Text(
                       'Get Start',

@@ -9,7 +9,7 @@ class AuthTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final String hintText;
 
-  const AuthTextFormField({
+  const   AuthTextFormField({
     required this.hintText,
     required this.prefixIcon,
     required this.validator,
@@ -23,6 +23,7 @@ class AuthTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.black),
       controller: controller,
       obscureText: obscureText,
       cursorColor: Colors.black,

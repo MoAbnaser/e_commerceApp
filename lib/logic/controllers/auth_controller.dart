@@ -3,6 +3,7 @@ import 'package:e_commerce_app/routes/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
@@ -14,6 +15,11 @@ class AuthController extends GetxController {
   var displayUserPhoto = ''.obs;
   var displayUserEmail = ''.obs;
   FaceBookModel? faceBookModel;
+  var googleSignIn = GoogleSignIn();
+  var isSignedIn = false;
+  final GetStorage authBox = GetStorage();
+
+  User? get userProfile => auth.currentUser;
 
   void visibility() {
     isVisibility = !isVisibility;
@@ -73,6 +79,8 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) =>
               displayUserName.value = auth.currentUser!.displayName!);
+      isSignedIn = true;
+      authBox.write("auth", isSignedIn);
       update();
       Get.offNamed(AppRoutes.mainScreen);
     } on FirebaseAuthException catch (error) {
@@ -137,22 +145,22 @@ class AuthController extends GetxController {
 
   void googleSinUpApp() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       displayUserName.value = googleUser!.displayName!;
       displayUserPhoto.value = googleUser.photoUrl!;
       displayUserEmail.value = googleUser.email;
 
-      // GoogleSignInAuthentication googleSignInAuthentication =
-      // await googleUser.authentication;
-      // final AuthCredential credential = GoogleAuthProvider.credential(
-      //   idToken: googleSignInAuthentication.idToken,
-      //   accessToken: googleSignInAuthentication.accessToken,
-      // );
-      //
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken,
+      );
+
       // await auth.signInWithCredential(credentiaxl);
-      //
-      // isSignedIn = true;
-      // authBox.write("auth", isSignedIn);
+
+      isSignedIn = true;
+      authBox.write("auth", isSignedIn);
       update();
 
       Get.offNamed(AppRoutes.mainScreen);
@@ -173,10 +181,34 @@ class AuthController extends GetxController {
     if (loginResult.status == LoginStatus.success) {
       final data = await FacebookAuth.instance.getUserData();
       faceBookModel = FaceBookModel.fromJson(data);
+      isSignedIn = true;
+      authBox.write("auth", isSignedIn);
       update();
       Get.offNamed(AppRoutes.mainScreen);
     }
   }
 
-  void signOutFromApp() {}
+  void signOutFromApp() async {
+    try {
+      await auth.signOut();
+      await googleSignIn.signOut();
+      await FacebookAuth.i.logOut();
+      displayUserName.value = '';
+      displayUserPhoto.value = '';
+      displayUserEmail.value = '';
+      isSignedIn = false;
+      authBox.remove("auth");
+      update();
+
+      Get.offNamed(AppRoutes.welcomeScreen);
+    } catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    }
+  }
 }

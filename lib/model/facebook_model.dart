@@ -18,14 +18,14 @@ class FaceBookModel {
 class FaceBookPhotoModel {
   final String? url;
   final int? height;
-  final int? widht;
+  final int? width;
 
-  FaceBookPhotoModel({this.url, this.height, this.widht});
+  FaceBookPhotoModel({this.url, this.height, this.width});
 
   factory FaceBookPhotoModel.fromJson(Map<String, dynamic> json) =>
       FaceBookPhotoModel(
         url: json['url'],
-        widht: json['width'],
+        width: json['width'],
         height: json['height'],
       );
 }

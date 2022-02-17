@@ -1,6 +1,10 @@
 import 'package:e_commerce_app/logic/bindings/auth_binding.dart';
+import 'package:e_commerce_app/logic/bindings/main_biding.dart';
+import 'package:e_commerce_app/logic/bindings/product_biding.dart';
+import 'package:e_commerce_app/view/screens/cart_screen.dart';
 import 'package:e_commerce_app/view/screens/auth/forgot_password_screen.dart';
 import 'package:e_commerce_app/view/screens/auth/login_screen.dart';
+import 'package:e_commerce_app/view/screens/payment_screen.dart';
 import 'package:e_commerce_app/view/screens/auth/signup_screen.dart';
 import 'package:e_commerce_app/view/screens/main_screen.dart';
 import 'package:e_commerce_app/view/screens/welcome_screen.dart';
@@ -13,6 +17,8 @@ class AppRoutes {
   static const signUpScreen = '/signUpScreen';
   static const forgotPasswordScreen = '/forgotPasswordScreen';
   static const mainScreen = '/mainScreen';
+  static const cartScreen = '/cartScreen';
+  static const paymentScreen = '/paymentScreen';
 
   //getPages
   static final routes = [
@@ -38,6 +44,28 @@ class AppRoutes {
     GetPage(
       name: mainScreen,
       page: () => MainScreen(),
+      bindings: [
+        AuthBinding(),
+        MainBiding(),
+        ProductBinding(),
+      ],
+    ),
+    GetPage(
+      name: cartScreen,
+      page: () => CartScreen(),
+      bindings: [
+        AuthBinding(),
+        ProductBinding(),
+      ],
+    ),
+    GetPage(
+      name: paymentScreen,
+      page: () => PaymentScreen(),
+      bindings: [
+        AuthBinding(),
+        ProductBinding(),
+        MainBiding(),
+      ],
     ),
   ];
 }

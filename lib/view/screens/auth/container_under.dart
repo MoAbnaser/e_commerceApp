@@ -22,7 +22,7 @@ class ContainerUnder extends StatelessWidget {
       width: double.infinity,
       height: 80,
       decoration: BoxDecoration(
-        color: Get.isDarkMode ? mainColor: pinkClr,
+        color: Get.isDarkMode ? pinkClr : mainColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -44,7 +44,7 @@ class ContainerUnder extends StatelessWidget {
           const HorizontalSpace(value: .08),
           TextButton(
             onPressed: onPressed,
-            child:  Text(
+            child: Text(
               buttonChild,
               style: const TextStyle(
                 decoration: TextDecoration.underline,

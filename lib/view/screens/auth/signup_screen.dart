@@ -24,9 +24,9 @@ class SignUpScreen extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -47,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
                               'Sign',
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
-                                  color: Get.isDarkMode ? mainColor : pinkClr,
+                                  color: Get.isDarkMode ? pinkClr : mainColor,
                                   fontSize: 35,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -59,8 +59,8 @@ class SignUpScreen extends StatelessWidget {
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -74,7 +74,7 @@ class SignUpScreen extends StatelessWidget {
                           inputType: TextInputType.name,
                           prefixIcon: Icon(
                             Icons.person,
-                            color: Get.isDarkMode ? mainColor : pinkClr,
+                            color: Get.isDarkMode ? pinkClr : mainColor,
                             size: 30,
                           ),
                           obscureText: false,
@@ -94,7 +94,7 @@ class SignUpScreen extends StatelessWidget {
                           inputType: TextInputType.emailAddress,
                           prefixIcon: Icon(
                             Icons.email,
-                            color: Get.isDarkMode ? mainColor : pinkClr,
+                            color: Get.isDarkMode ? pinkClr : mainColor,
                             size: 30,
                           ),
                           obscureText: false,
@@ -115,7 +115,7 @@ class SignUpScreen extends StatelessWidget {
                               inputType: TextInputType.visiblePassword,
                               prefixIcon: Icon(
                                 Icons.lock,
-                                color: Get.isDarkMode ? mainColor : pinkClr,
+                                color: Get.isDarkMode ? pinkClr : mainColor,
                                 size: 30,
                               ),
                               suffixIcon: IconButton(
@@ -126,14 +126,14 @@ class SignUpScreen extends StatelessWidget {
                                     ? Icon(
                                         Icons.visibility_off,
                                         color: Get.isDarkMode
-                                            ? mainColor
-                                            : pinkClr,
+                                            ? pinkClr
+                                            : mainColor,
                                       )
                                     : Icon(
                                         Icons.visibility,
                                         color: Get.isDarkMode
-                                            ? mainColor
-                                            : pinkClr,
+                                            ? pinkClr
+                                            : mainColor,
                                       ),
                                 color: mainColor,
                               ),
@@ -164,11 +164,12 @@ class SignUpScreen extends StatelessWidget {
                                       return Colors.grey
                                           .shade200; // the color when checkbox is selected;
                                     }
-                                    return Colors
-                                        .white; //the color when checkbox is unselected;
+                                    return Get.isDarkMode?Colors
+                                        .white:Colors.grey
+                                        .shade200 ; //the color when checkbox is unselected;
                                   }),
                                   checkColor:
-                                      Get.isDarkMode ? mainColor : pinkClr,
+                                      Get.isDarkMode ? pinkClr : mainColor,
                                   value: controller.isCheckedBox,
                                   onChanged: (value) {
                                     controller.checked();
@@ -182,8 +183,8 @@ class SignUpScreen extends StatelessWidget {
                               style: GoogleFonts.lato(
                                 textStyle: TextStyle(
                                   color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -198,8 +199,8 @@ class SignUpScreen extends StatelessWidget {
                                   decoration: TextDecoration.underline,
                                   fontSize: 18,
                                   color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? Colors.white
+                                      : Colors.black,
                                 ),
                               ),
                             )

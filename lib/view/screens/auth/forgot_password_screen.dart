@@ -14,21 +14,20 @@ class ForgotPasswordScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final controller = Get.find<AuthController>();
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           leading: IconButton(
             onPressed: () {
               Get.back();
             },
             icon: Icon(
               Icons.arrow_back,
-              color: Get.isDarkMode ? Colors.black : Colors.white,
+              color: Get.isDarkMode ? Colors.white : Colors.black,
             ),
           ),
           centerTitle: true,
@@ -36,7 +35,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           title: Text(
             'Forgot Password',
             style: TextStyle(
-              color: Get.isDarkMode ? mainColor : pinkClr,
+              color: Get.isDarkMode ? pinkClr : mainColor,
             ),
           ),
         ),
@@ -56,7 +55,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
-                      color: Get.isDarkMode ? Colors.black : Colors.white,
+                      color: Get.isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                   const VerticalSpace(value: 5),
@@ -70,7 +69,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     inputType: TextInputType.emailAddress,
                     prefixIcon: Icon(
                       Icons.email,
-                      color: Get.isDarkMode ? mainColor : pinkClr,
+                      color: Get.isDarkMode ? pinkClr : mainColor,
                       size: 30,
                     ),
                     obscureText: false,
@@ -84,13 +83,20 @@ class ForgotPasswordScreen extends StatelessWidget {
                     controller: _emailController,
                   ),
                   const VerticalSpace(value: 5),
-                  GetBuilder<AuthController>(builder: (_) {
-                    return AuthButton(text: 'Send', onPressed: () {
-                      if(_formKey.currentState!.validate()){
-                        controller.restPassword(email: _emailController.text.trim());
-                      }
-                    });
-                  }),
+                  GetBuilder<AuthController>(
+                    builder: (_) {
+                      return AuthButton(
+                        text: 'Send',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            controller.restPassword(
+                              email: _emailController.text.trim(),
+                            );
+                          }
+                        },
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
